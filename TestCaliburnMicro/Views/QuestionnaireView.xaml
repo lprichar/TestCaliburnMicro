@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="TestCaliburnMicro.Views.QuestionnaireView"
+    d:DataContext="{d:DesignInstance Type=viewModels:QuestionnaireViewModel, IsDesignTimeCreatable=True}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:TestCaliburnMicro.ViewModels"
+    xmlns:micro="using:Caliburn.Micro"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    >
+
+    <Grid Style="{StaticResource Level2Style}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <ListView 
+            x:Name="Sections" 
+            Grid.Column="0" 
+            ItemsSource="{Binding Sections, Mode=TwoWay}"
+            micro:Message.Attach="[SelectionChanged]=[Action SetActiveSection(Sections.SelectedItem)]"
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Column="1" Style="{StaticResource Level3Style}">
+            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" x:Name="ActiveItem" />
+        </Grid>
+    </Grid>
+</UserControl>
