@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
 using TestCaliburnMicro.Services;
 using TestCaliburnMicro.ViewModels;
-using TestCaliburnMicro.Views;
 
 namespace TestCaliburnMicro
 {
@@ -24,12 +22,14 @@ namespace TestCaliburnMicro
             _container.RegisterSharingService();
 
             _container
+                .PerRequest<DialogManagerViewModel>()
                 .PerRequest<MainViewModel>()
                 .PerRequest<FormService>()
                 .PerRequest<SectionsService>()
                 .PerRequest<QuestionnaireViewModel>()
-                .PerRequest<FormsViewModel>();
-
+                .PerRequest<FormsViewModel>()
+                .PerRequest<SectionViewModel>()
+                .PerRequest<MessageBoxViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
@@ -46,28 +46,14 @@ namespace TestCaliburnMicro
             return _container.GetAllInstances(service);
         }
 
-
         protected override void BuildUp(object instance)
         {
             _container.BuildUp(instance);
         }
 
-        protected override void PrepareViewFirst(Frame rootFrame)
-        {
-            _container.RegisterNavigationService(rootFrame);
-        }
-
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            DisplayRootView<MainView>();
-        }
-
-        protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
-        {
-            _container.UnregisterHandler(typeof(ShareOperation), null);
-            _container.Instance(args.ShareOperation);
-
-            DisplayRootViewFor<MainViewModel>();
+            DisplayRootViewFor<DialogManagerViewModel>();
         }
     }
 }

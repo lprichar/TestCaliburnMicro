@@ -12,7 +12,8 @@
     d:DesignWidth="400"
     >
     
-    <Grid Style="{StaticResource Level3Style}">
+    <StackPanel Style="{StaticResource Level3Style}">
         <TextBlock Style="{StaticResource H1Style}" Text="{Binding DisplayName}" />
-    </Grid>
+        <Button Margin="0,20,0,0" x:Name="OpenMessageBox">Open Message Box</Button>
+    </StackPanel>
 </UserControl>

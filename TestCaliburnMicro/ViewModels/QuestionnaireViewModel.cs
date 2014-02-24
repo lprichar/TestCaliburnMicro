@@ -6,8 +6,9 @@ namespace TestCaliburnMicro.ViewModels
 {
     public class QuestionnaireViewModel : Conductor<IScreen>
     {
+
         private SectionsService _sectionsService;
-        
+
         public QuestionnaireViewModel(SectionsService sectionsService)
         {
             _sectionsService = sectionsService;
@@ -30,7 +31,9 @@ namespace TestCaliburnMicro.ViewModels
 
         public void SetActiveSection(Section section)
         {
-            ActivateItem(new SectionViewModel(section));
+            var sectionViewModel = IoC.Get<SectionViewModel>();
+            sectionViewModel.SetSection(section);
+            ActivateItem(sectionViewModel);
         }
     }
 }

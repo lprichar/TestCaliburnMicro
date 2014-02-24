@@ -106,9 +106,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\SectionsService.cs" />
+    <Compile Include="ViewModels\DialogManagerViewModel.cs" />
     <Compile Include="ViewModels\FormsViewModel.cs" />
+    <Compile Include="ViewModels\MessageBoxViewModel.cs" />
     <Compile Include="ViewModels\QuestionnaireViewModel.cs" />
     <Compile Include="ViewModels\SectionViewModel.cs" />
+    <Compile Include="Views\DialogManagerView.xaml.cs">
+      <DependentUpon>DialogManagerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FormsView.xaml.cs">
       <DependentUpon>FormsView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +125,9 @@
     <Compile Include="Services\FormService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\MessageBoxView.xaml.cs">
+      <DependentUpon>MessageBoxView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuestionnaireView.xaml.cs">
       <DependentUpon>QuestionnaireView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\DialogManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FormsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +164,10 @@
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MessageBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QuestionnaireView.xaml">
       <SubType>Designer</SubType>

@@ -1,19 +1,13 @@
 ﻿using Caliburn.Micro;
-using TestCaliburnMicro.Views;
 
 namespace TestCaliburnMicro.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>
     {
-        private readonly WinRTContainer _winRtContainer;
         private string _pageTitle;
 
-        public MainViewModel() {  }
-
-        public MainViewModel(WinRTContainer winRtContainer)
+        public MainViewModel()
         {
-            _winRtContainer = winRtContainer;
-
             PageTitle = "Test Caliburn.Micro";
         }
 
@@ -30,6 +24,7 @@ namespace TestCaliburnMicro.ViewModels
         public void ShowQuestionnaire()
         {
             var questionnaireViewModel = IoC.Get<QuestionnaireViewModel>();
+            questionnaireViewModel.Parent = this;
             ActivateItem(questionnaireViewModel);
         }
 
