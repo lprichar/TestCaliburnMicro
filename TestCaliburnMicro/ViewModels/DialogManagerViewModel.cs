@@ -1,9 +1,11 @@
-﻿using Caliburn.Micro;
-using TestCaliburnMicro.Events;
+﻿using System.IO.Compression;
+using System.Threading.Tasks;
+using Caliburn.Micro;
+using TestCaliburnMicro.LibPcl.Model;
 
 namespace TestCaliburnMicro.ViewModels
 {
-    public class DialogManagerViewModel : Conductor<IScreen>, IHandle<MessageBoxArgs>
+    public class DialogManagerViewModel : Conductor<IScreen>.Collection.OneActive, IHandle<MessageBoxArgs>
     {
         public DialogManagerViewModel(IEventAggregator eventAggregator)
         {
@@ -17,11 +19,12 @@ namespace TestCaliburnMicro.ViewModels
             ActivateItem(mainViewModel);
         }
 
-        public void Handle(MessageBoxArgs message)
+        public void Handle(MessageBoxArgs args)
         {
             var messageBox = IoC.Get<MessageBoxViewModel>();
-            messageBox.SetArgs(message);
+            messageBox.SetArgs(args);
             ActivateItem(messageBox);
+            messageBox.Deactivated += delegate { args.OnClose(messageBox.Result); };
         }
     }
 }

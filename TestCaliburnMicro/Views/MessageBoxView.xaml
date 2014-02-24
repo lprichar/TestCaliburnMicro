@@ -9,8 +9,11 @@
     d:DesignWidth="400">
 
     <StackPanel Background="#555555">
-        <TextBlock Text="Message Box" FontSize="30" />
-        <TextBlock Margin="0,10,0,0" Text="You just opened a message box!" />
-        <Button Margin="0,20,0,0" x:Name="Close">Close</Button>
+        <TextBlock x:Name="Title" FontSize="30" />
+        <TextBlock x:Name="Message" Margin="0,10,0,0" />
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <Button x:Name="Ok">Ok</Button>
+            <Button x:Name="Cancel">Cancel</Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>

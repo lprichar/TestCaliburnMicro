@@ -1,6 +1,7 @@
-﻿using Caliburn.Micro;
-using TestCaliburnMicro.Events;
+﻿using System.Threading.Tasks;
+using Caliburn.Micro;
 using TestCaliburnMicro.LibPcl;
+using TestCaliburnMicro.LibPcl.Model;
 
 namespace TestCaliburnMicro.ViewModels
 {
@@ -31,6 +32,10 @@ namespace TestCaliburnMicro.ViewModels
             {
                 Title = "Delete " + DisplayName,
                 Message = "Are you sure you want to delete " + DisplayName + "?",
+                OnClose = result =>
+                {
+                    DisplayName = result.ToString();
+                }
             });
         }
     }
